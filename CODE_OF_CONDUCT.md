@@ -1,133 +1,381 @@
-# Contributor Covenant Code of Conduct
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk QR Code Generator by VMC Expert</title>
+     <style>
+         body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f8;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column; /* Keep vertical layout for overall structure */
+        }
+         h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px; /* Reduced margin */
+            text-align: center;
+        }
 
-## Our Pledge
+       .container {
+            max-width: 100%; /* Take full width */
+            margin: 0 auto;
+             padding: 20px;
+            display: flex;
+             flex: 1;
+              flex-direction: column; /* Keep items in container vertical for overall structure*/
+              align-items: center;/* Center content */
+        }
 
-We as members, contributors, and leaders pledge to make participation in our
-community a harassment-free experience for everyone, regardless of age, body
-size, visible or invisible disability, ethnicity, sex characteristics, gender
-identity and expression, level of experience, education, socio-economic status,
-nationality, personal appearance, race, caste, color, religion, or sexual
-identity and orientation.
+        .section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px; /* Reduced margin */
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 95%; /* Take up most of the page width */
+            max-width: 1400px; /* Max width of the section*/
+             display: flex; /* Use flexbox for horizontal layout */
+             flex-direction: row; /* Layout form and QR codes side by side */
+              align-items: flex-start; /* Align items to the top */
+            justify-content: space-between;/* Distribute space between form and QR codes */
+            box-sizing: border-box;/*Make sure padding is taken into account */
+        }
 
-We pledge to act and interact in ways that contribute to an open, welcoming,
-diverse, inclusive, and healthy community.
+        .form-container {
+            width: 45%; /* Take up half of the horizontal space */
+             display: flex;
+            flex-direction: column;/* Stack elements vertically in the form */
+             padding: 10px; /* Add some spacing around elements */
+        }
 
-## Our Standards
 
-Examples of behavior that contributes to a positive environment for our
-community include:
+           h2 {
+            font-size: 24px;
+            color: #444;
+            margin-bottom: 15px; /* Reduced margin */
+             text-align: left;
+        }
 
-* Demonstrating empathy and kindness toward other people
-* Being respectful of differing opinions, viewpoints, and experiences
-* Giving and gracefully accepting constructive feedback
-* Accepting responsibility and apologizing to those affected by our mistakes,
-  and learning from the experience
-* Focusing on what is best not just for us as individuals, but for the overall
-  community
+      label {
+              display: block;
+              margin-top: 10px;
+              margin-bottom: 5px;
+             text-align: left;
+          }
 
-Examples of unacceptable behavior include:
 
-* The use of sexualized language or imagery, and sexual attention or advances of
-  any kind
-* Trolling, insulting or derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or email address,
-  without their explicit permission
-* Other conduct which could reasonably be considered inappropriate in a
-  professional setting
+        textarea {
+            padding: 10px;
+            margin: 10px 0;
+             width: 100%; /* Take full width within container */
+             border: 1px solid #ccc;
+             border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px; /*  font size of text*/
+            height: 150px; /* Initial height */
+             resize: vertical;/* Allows for vertical resize */
+        }
 
-## Enforcement Responsibilities
 
-* Community leaders are responsible for clarifying and enforcing our standards of
-  acceptable behavior and will take appropriate and fair corrective action in
-  response to any behavior that they deem inappropriate, threatening, offensive,
-  or harmful.
+        input[type="number"], input[type="color"],select {
+             padding: 10px;
+            margin: 10px 0;
+             width: 100%; /* Take full width within container */
+             border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+             font-size: 16px;
+        }
 
-* Community leaders have the right and responsibility to remove, edit, or reject
-  comments, commits, code, wiki edits, issues, and other contributions that are
-  not aligned to this Code of Conduct, and will communicate reasons for moderation
-  decisions when appropriate.
 
-## Scope
+       button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+             margin-top: 15px; /* Reduced margin */
+           align-self: flex-start; /* Align buttons to the start of the form container */
+        }
 
-* This Code of Conduct applies within all community spaces, and also applies when
-  an individual is officially representing the community in public spaces.
-  Examples of representing our community include using an official e-mail address,
-  posting via an official social media account, or acting as an appointed
-  representative at an online or offline event.
+        button:hover {
+            background-color: #0056b3;
+        }
 
-## Enforcement
+         .qr-code-container {
+               width: 50%; /* Take up half of the horizontal space */
+             display: flex;
+              flex-direction: column;
+                align-items: flex-start;
+                  padding: 10px; /* Add some spacing around elements */
+        }
 
-* Instances of abusive, harassing, or otherwise unacceptable behavior may be
-  reported to the community leaders responsible for enforcement at
-  support@github.com.
- 
-* All complaints will be reviewed and investigated promptly and fairly.
 
-* All community leaders are obligated to respect the privacy and security of the
-  reporter of any incident.
+       .image-container, .qr-container {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 200px; /*max width of container*/
+            max-height: 250px; /* max height of container*/
+             overflow: hidden; /* Hide overflow to not expand the page */
+        }
 
-## Enforcement Guidelines
+           .serial-number {
+            font-size: 14px;
+            color: #555;
+            margin-top: 10px;
+        }
 
-* Community leaders will follow these Community Impact Guidelines in determining
-  the consequences for any action they deem in violation of this Code of Conduct:
+        img {
+            border-radius: 5px;
+            margin-bottom: 10px;
+            max-width: 100%; /* Limit img size */
+             max-height: 150px;/* Limit img size */
+        }
+           .download-all, .download-zip {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            align-self: flex-start;
+             margin-right: 10px;
+        }
+          .download-zip {
+            background-color: #17a2b8;
+        }
 
-### 1. Correction
+        .download-all:hover {
+            background-color: #218838;
+        }
+          .download-zip:hover {
+            background-color: #138496;
+        }
 
-**Community Impact**: Use of inappropriate language or other behavior deemed
-unprofessional or unwelcome in the community.
 
-**Consequence**: A private, written warning from community leaders, providing
-clarity around the nature of the violation and an explanation of why the
-behavior was inappropriate. A public apology may be requested.
+        #images, #qrCodes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;/* Align to the start */
+        }
 
-### 2. Warning
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            margin: 20px 0;
+            height: 20px;
+            position: relative;
+        }
 
-**Community Impact**: A violation through a single incident or series of
-actions.
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #28a745;
+            width: 0;
+            border-radius: 10px;
+        }
+        footer {
+           background-color: #f0f0f0;
+           padding: 10px;
+           text-align: center;
+           margin-top: auto;
+       }
 
-**Consequence**: A warning with consequences for continued behavior. No
-interaction with the people involved, including unsolicited interaction with
-those enforcing the Code of Conduct, for a specified period of time. This
-includes avoiding interactions in community spaces as well as external channels
-like social media. Violating these terms may lead to a temporary or permanent
-ban.
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bulk QR Code Generator by VMC Expert</h1>
 
-### 3. Temporary Ban
+        <!-- Bulk QR Code Generator Section -->
+        <!-- Update this section in the Bulk QR Code Generator -->
+<div class="section">
+    <div class="form-container">
+       <h2>QR Code Generation Form</h2>
+    <label for="bulkData">Enter multiple URLs or text, one per line</label>
+    <textarea id="bulkData" rows="5" placeholder="Enter multiple URLs or text, one per line"></textarea><br>
+    <label for="qrNames">Enter names separated by commas</label>
+    <textarea id="qrNames" placeholder="Enter names separated by commas"></textarea><br>
+    <label for="qrSize">QR Code Size:</label>
+    <input type="number" id="qrSize" value="128" min="64" max="512"><br>
+    <label for="qrBgColor">Background Color:</label>
+    <input type="color" id="qrBgColor" value="#ffffff"><br>
+    <label for="qrMargin">Outer Margin (px):</label>
+    <input type="number" id="qrMargin" value="10" min="0" max="100"><br>
+     <label for="qrNameSize">Name Font Size:</label>
+    <input type="number" id="qrNameSize" value="14" min="10" max="36"><br>
+     <label for="qrErrorCorrection">Error Correction Level:</label>
+        <select id="qrErrorCorrection">
+            <option value="L">L - Low (7% data recovery)</option>
+            <option value="M">M - Medium (15% data recovery)</option>
+            <option value="Q">Q - High (25% data recovery)</option>
+            <option value="H">H - Very High (30% data recovery)</option>
+        </select><br>
+    <button type="button" onclick="generateBulkQR()">Generate QR Codes</button>
+      </div>
+     <div class="qr-code-container">
+          <div style="display: flex; justify-content: flex-start; align-items: center;">
+              <button id="downloadAllQRCodesTop" class="download-all" onclick="downloadAllQRCodes()" style="display:none;">Download All QR Codes</button>
+              <button id="downloadZipQRCodesTop" class="download-zip" onclick="downloadZipQRCodes()" style="display:none;">Download All QR Codes as Zip</button>
+            </div>
+           <h2>Generated QR Codes</h2>
+          <!-- Progress Percentage -->
+    <div id="progressPercentage" style="margin-top: 10px; font-weight: bold; text-align:left;">Progress: 0%</div>
+    
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="qrProgressBar">
+        <div class="progress-bar-fill" id="qrProgressBarFill"></div>
+    </div>
 
-**Community Impact**: A serious violation of community standards, including
-sustained inappropriate behavior.
+    <!-- Status Indicator -->
+    <div id="statusIndicator" style="margin-top: 10px; font-size: 16px; color: #555; text-align: left;">Ready to generate QR codes.</div>
 
-**Consequence**: A temporary ban from any sort of interaction or public
-communication with the community for a specified period of time. No public or
-private interaction with the people involved, including unsolicited interaction
-with those enforcing the Code of Conduct, is allowed during this period.
-Violating these terms may lead to a permanent ban.
+    <div id="qrCodes"></div>
+         <div style="display: flex; justify-content: flex-start; margin-top:20px">
+              <button id="downloadAllQRCodes" class="download-all" onclick="downloadAllQRCodes()" style="display:none;">Download All QR Codes</button>
+              <button id="downloadZipQRCodes" class="download-zip" onclick="downloadZipQRCodes()" style="display:none;">Download All QR Codes as Zip</button>
+            </div>
 
-### 4. Permanent Ban
+      </div>
+</div>    </div>
 
-**Community Impact**: Demonstrating a pattern of violation of community
-standards, including sustained inappropriate behavior, harassment of an
-individual, or aggression toward or disparagement of classes of individuals.
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-**Consequence**: A permanent ban from any sort of public interaction within the
-community.
+    <script>
+        const qrCodesData = []; // Store QR code data for bulk download
 
-## Attribution
+        // Function to update the progress bar
+        function updateProgressBar(progressBarFill, percentage) {
+            progressBarFill.style.width = `${percentage}%`;
+        }
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage],
-version 2.1, available at
-[https://www.contributor-covenant.org/version/2/1/code_of_conduct.html][v2.1].
+        function generateBulkQR() {
+          const data = document.getElementById('bulkData').value.split('\n').filter(item => item.trim() !== '');
+            const names = document.getElementById('qrNames').value.split(',').map(name => name.trim()).filter(name => name !== '');
+            const size = parseInt(document.getElementById('qrSize').value);
+            const margin = parseInt(document.getElementById('qrMargin').value);
+            const nameFontSize = parseInt(document.getElementById('qrNameSize').value);
+            const bgColor = document.getElementById('qrBgColor').value;
+            const errorCorrectionLevel = document.getElementById('qrErrorCorrection').value;
+            const qrCodesDiv = document.getElementById('qrCodes');
+            const progressBarFill = document.getElementById('qrProgressBarFill');
+            const statusIndicator = document.getElementById('statusIndicator');
+            
+            qrCodesDiv.innerHTML = "";
+            qrCodesData.length = 0;
+            
+            if (data.length !== names.length) {
+              statusIndicator.textContent = "Error: Please enter the same number of names as QR codes.";
+              return;
+            }
 
-Community Impact Guidelines were inspired by
-[Mozilla's code of conduct enforcement ladder][Mozilla CoC].
+            statusIndicator.textContent = "Generating QR codes...";
 
-For answers to common questions about this code of conduct, see the FAQ at
-[https://www.contributor-covenant.org/faq][FAQ]. Translations are available at
-[https://www.contributor-covenant.org/translations][translations].
+            const totalCodes = data.length;
+            let generatedCodes = 0;
+          
+            data.forEach(async (item, index) => {
+                const qrDiv = document.createElement('div');
+                qrDiv.className = 'qr-container';
+                const qrCode = new QRCode(qrDiv, {
+                    text: item,
+                    width: size,
+                    height: size,
+                    colorDark: "#000000",
+                    colorLight: bgColor,
+                    correctLevel: QRCode.CorrectLevel[errorCorrectionLevel]
+                });
+                qrCodesDiv.appendChild(qrDiv);
+            
+            
+                // Canvas manipulation within the loop
+              await new Promise(resolve => setTimeout(resolve, 10)); // Small delay
+              const qrCanvas = qrDiv.querySelector("canvas");
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
 
-[homepage]: https://www.contributor-covenant.org
-[v2.1]: https://www.contributor-covenant.org/version/2/1/code_of_conduct.html
-[Mozilla CoC]: https://github.com/mozilla/diversity
-[FAQ]: https://www.contributor-covenant.org/faq
-[translations]: https://www.contributor-covenant.org/translations
+                // Adjust canvas size to fit QR code, margin, and name
+                const canvasHeight = size + margin + 50;  // Extra height for margin and name text
+                const canvasWidth = size + margin * 2;  // Adjust width for margin
+                canvas.width = canvasWidth;
+                canvas.height = canvasHeight;
+
+                // Background for the whole canvas
+                ctx.fillStyle = '#ffffff';  // White background
+                ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+
+                // Draw QR code with margin on canvas
+                ctx.drawImage(qrCanvas, margin, 2);
+
+                // Style for the name text
+                ctx.fillStyle = '#000000';  // Black text
+                ctx.font = `${nameFontSize}px Arial`;  // Dynamically set name font size
+                ctx.textAlign = 'center';
+
+                // Draw the name text below the QR code
+                const name = names[index].trim();
+                ctx.fillText(name, canvasWidth / 2, canvasHeight - 20);
+
+                // Save the generated QR code with name
+                const imgData = canvas.toDataURL("image/png");
+                qrCodesData.push({
+                    name: `qr_code_${index + 1}.png`,
+                    data: imgData
+                  });
+
+                generatedCodes++;
+                const progress = (generatedCodes / totalCodes) * 100;
+                updateProgressBar(progressBarFill, progress);
+                document.getElementById('progressPercentage').textContent = `Progress: ${progress.toFixed(0)}%`;
+
+            if (qrCodesData.length === data.length) {
+              document.getElementById('downloadAllQRCodes').style.display = 'block';
+                 document.getElementById('downloadZipQRCodes').style.display = 'block';
+                 document.getElementById('downloadAllQRCodesTop').style.display = 'block';
+                 document.getElementById('downloadZipQRCodesTop').style.display = 'block';
+                statusIndicator.textContent = "QR code generation complete.";
+            }
+          });
+        }
+
+         function downloadAllQRCodes() {
+              qrCodesData.forEach(qrCode => {
+                  const link = document.createElement('a');
+                  link.href = qrCode.data;
+                  link.download = qrCode.name;
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                });
+        }
+
+         function downloadZipQRCodes() {
+            const zip = new JSZip();
+
+            qrCodesData.forEach(qrCode => {
+                zip.file(qrCode.name, qrCode.data.split(',')[1], { base64: true });
+            });
+
+            zip.generateAsync({ type: 'blob' }).then(content => {
+                saveAs(content, 'qr_codes.zip');
+            });
+         }
+    </script>
+      <footer>
+          © 2024 VMC Expert
+    </footer>
+</body>
+</html>
